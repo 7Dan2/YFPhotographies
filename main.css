@@ -1,0 +1,42 @@
+/* -- B -- */
+body
+{
+    background: black;
+    display: flex;
+}
+
+/* -- C ** */
+.container
+{
+    width: 100vw;
+    height: 100vh;
+    border: 3px solid white;
+    margin: 10px;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+/* -- P -- */
+.pics-container
+{
+    display: flex;
+    border: 2px solid white;
+    border-radius: 6px;
+}
+
+.pics
+{
+    width: 300px;
+    height: 200px;
+    border: 2px solid white;
+    border-radius: 6px;
+}
+
+/* -- T -- */
+.top-bar
+{
+    height: 54px;
+    background: gray;
+}

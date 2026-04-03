@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YF Photographies — Fragments de nature intime</title>
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --text: #e0e0e0;
+            --accent: #888888;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        header {
+            text-align: center;
+            padding: 4rem 1rem 3rem;
+            border-bottom: 1px solid #222;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            letter-spacing: 4px;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--accent);
+            font-style: italic;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+            padding: 40px 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .photo {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 4 / 5; /* ou 3/4 selon tes images */
+            cursor: pointer;
+            border: 1px solid #222;
+        }
+
+        .photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .photo:hover img {
+            transform: scale(1.08);
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.98);
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90vh;
+            position: relative;
+        }
+
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 90vh;
+            box-shadow: 0 0 40px rgba(0,0,0,0.8);
+        }
+
+        .close, .prev, .next {
+            position: absolute;
+            color: #ccc;
+            font-size: 2.5rem;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .close { top: -50px; right: 20px; }
+        .prev { left: -60px; top: 50%; }
+        .next { right: -60px; top: 50%; }
+
+        footer {
+            text-align: center;
+            padding: 3rem 1rem;
+            color: var(--accent);
+            font-size: 0.95rem;
+            border-top: 1px solid #222;
+        }
+
+        @media (max-width: 600px) {
+            .gallery { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>YF Photographies</h1>
+        <p class="subtitle">Fragments de nature intime</p>
+        <p style="margin-top: 1rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+            Photographe de la vie du dehors — Capturé en lumière naturelle, sans artifice.
+        </p>
+    </header>
+
+    <div class="gallery" id="gallery">
+        <!-- Tes photos ici -->
+        <div class="photo" data-src="https://via.placeholder.com/800x1000/111/fff?text=Fleur+bleue">
+            <img src="https://via.placeholder.com/800x1000/111/fff?text=Fleur+bleue" alt="Fleur bleue en clair-obscur">
+        </div>
+        <div class="photo" data-src="https://via.placeholder.com/800x1000/111/fff?text=Papillon">
+            <img src="https://via.placeholder.com/800x1000/111/fff?text=Papillon" alt="Papillon">
+        </div>
+        <div class="photo" data-src="./assets/papillon.jpg">
+                    <img src="./assets/papillon.jpg" alt="Papillon">
+                </div>
+                <div class="photo" data-src="./assets/escargot.jpg">
+                    <img src="./assets/escargot.jpg" alt="escargot">
+                </div>
+                <div class="photo" data-src="./assets/fleur.jpg">
+                    <img src="./assets/fleur.jpg" alt="fleur">
+                </div>
+                <div class="photo" data-src="./assets/rose.jpg">
+                    <img src="./assets/rose.jpg" alt="rose">
+                </div>
+                <div class="photo" data-src="./assets/hortensia.jpg">
+                    <img src="./assets/hortensia.jpg" alt="hortensia">
+                </div>
+        <!-- Ajoute autant de div.photo que tu veux -->
+    </div>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <span class="close">&times;</span>
+            <span class="prev">&#10094;</span>
+            <img id="lightbox-img" src="" alt="">
+            <span class="next">&#10095;</span>
+        </div>
+    </div>
+
+    <footer>
+        © 2026 YF Photographies — Tous droits réservés<br>
+        <a href="#" style="color: #aaa; text-decoration: none;">Éditions limitées</a> • 
+        <a href="#" style="color: #aaa; text-decoration: none;">À propos</a>
+    </footer>
+
+    <script>
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const closeBtn = document.querySelector('.close');
+        const prevBtn = document.querySelector('.prev');
+        const nextBtn = document.querySelector('.next');
+        let currentIndex = 0;
+        const photos = Array.from(document.querySelectorAll('.photo'));
+
+        function openLightbox(index) {
+            currentIndex = index;
+            lightboxImg.src = photos[index].dataset.src;
+            lightbox.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lightbox.style.display = 'none';
+            document.body.style.overflow = 'visible';
+        }
+
+        function showPrev() {
+            currentIndex = (currentIndex - 1 + photos.length) % photos.length;
+            lightboxImg.src = photos[currentIndex].dataset.src;
+        }
+
+        function showNext() {
+            currentIndex = (currentIndex + 1) % photos.length;
+            lightboxImg.src = photos[currentIndex].dataset.src;
+        }
+
+        // Événements
+        photos.forEach((photo, index) => {
+            photo.addEventListener('click', () => openLightbox(index));
+        });
+
+        closeBtn.addEventListener('click', closeLightbox);
+        prevBtn.addEventListener('click', showPrev);
+        nextBtn.addEventListener('click', showNext);
+
+        // Fermeture au clic sur le fond ou touche Échap
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) closeLightbox();
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (lightbox.style.display === 'flex') {
+                if (e.key === 'Escape') closeLightbox();
+                if (e.key === 'ArrowLeft') showPrev();
+                if (e.key === 'ArrowRight') showNext();
+            }
+        });
+    </script>
+</body>
+</html>
