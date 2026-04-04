@@ -5,14 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>YF Photographies — Fragments de nature intime</title>
     <style>
-        :root {
+        :root 
+        {
             --bg: #0a0a0a;
             --text: #e0e0e0;
             --accent: #888888;
             --hover: #bbbbbb;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        *
+        {
+            margin: 0; padding: 0; box-sizing: border-box
+        }
+
         body {
             background-color: var(--bg);
             color: var(--text);
@@ -20,24 +25,113 @@
             line-height: 1.6;
         }
 
-        header {
+        header
+        {
             border-bottom: 1px solid #222;
             padding: 2.5rem 5% 2rem;
             position: sticky;
             top: 0;
             background: var(--bg);
             z-index: 100;
+            transition: all 0.4s ease;
         }
 
-         .header-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 2rem;
+        /* Version réduite (au scroll) */
+        header.shrink
+        {
+            padding: 1.1rem 0 1rem 0;
         }
+
+        header.shrink .logo-main
+        {
+        font-size: 2.1rem;                /* Réduction du logo */
+        letter-spacing: 5px;
+        }
+
+        header.shrink .logo-sub
+        {
+        font-size: 0.8rem;
+        margin-top: 3px;
+        }
+
+        header.shrink .nav-link
+        {
+        padding: 10px 16px;
+        font-size: 1rem;
+        }
+
+        /* .header-content
+        {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 2rem;
+        } */
+
+        .header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+/* Version Desktop */
+@media (min-width: 769px) {
+    .header-content {
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 0 5%;
+    }
+}
+
+/* Version Mobile - plus compacte et accessible */
+@media (max-width: 768px) {
+    header {
+        padding: 2rem 0 1.8rem 0;
+    }
+
+    .logo-main {
+        font-size: 2.65rem;
+        letter-spacing: 7px;
+    }
+
+    .logo-sub {
+        font-size: 0.9rem;
+        letter-spacing: 3.5px;
+        margin-top: 5px;
+    }
+
+    nav {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.8rem;
+        width: 100%;
+        max-width: 380px;
+    }
+
+    .nav-link {
+        padding: 14px 22px !important;     /* ≈ 48px de hauteur */
+        font-size: 1.05rem;
+        min-width: 110px;                  /* bonne largeur de touche */
+        text-align: center;
+        border-radius: 4px;
+        transition: all 0.3s ease;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+        background-color: #1a1a1a;
+        border-bottom: none;               /* on enlève le underline sur mobile */
+    }
+}
+
 
         .logo {
             text-align: center;
@@ -50,6 +144,7 @@
             font-weight: 300;
             letter-spacing: 8px;
             line-height: 1;
+            transition: all 0.4s ease;
         }
 
         .logo-sub {
@@ -443,6 +538,27 @@
             alert("Merci ! Votre message a bien été envoyé (simulation).");
             e.target.reset();
         });
+
+        // === HEADER SHRINK ON SCROLL ===
+const header = document.querySelector('header');
+let lastScrollY = window.scrollY;
+
+function handleScroll() {
+    const currentScrollY = window.scrollY;
+
+    if (currentScrollY > 80 && currentScrollY > lastScrollY) {
+        // On descend → on réduit le header
+        header.classList.add('shrink');
+    } else if (currentScrollY < lastScrollY) {
+        // On remonte → on restaure
+        header.classList.remove('shrink');
+    }
+
+    lastScrollY = currentScrollY;
+}
+
+// Lancer l'écoute du scroll
+window.addEventListener('scroll', handleScroll);
     </script>
 </body>
 </html>
