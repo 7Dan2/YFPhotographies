@@ -11,6 +11,8 @@
     <meta property="og:image" content="https://7dan2.github.io/YFPhotographies/assets/papillon.jpg">
     
     <title>YF Photographies | Fragments de nature intime</title>
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    
     <style>
         :root 
         {
@@ -31,6 +33,101 @@
             font-family: 'Segoe UI', system-ui, sans-serif;
             line-height: 1.6;
         }
+
+/* Éditions limitées - Grille visuelle */
+.editions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 40px 30px;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 5%;
+}
+
+.edition-card {
+    background: #111;
+    border: 1px solid #333;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.edition-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+}
+
+.edition-card img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    display: block;
+}
+
+.edition-info {
+    padding: 24px;
+}
+
+.edition-info h3 {
+    margin-bottom: 12px;
+    font-size: 1.35rem;
+    color: #ddd;
+}
+
+.edition-info p {
+    color: #aaa;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    font-size: 0.98rem;
+}
+
+.price-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.price {
+    font-size: 1.45rem;
+    color: #ccc;
+}
+
+.price small {
+    font-size: 0.95rem;
+    color: #777;
+}
+
+.btn {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    background: #222;
+    color: #eee;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 1.02rem;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    background: #444;
+    color: white;
+}
+
+/* Responsive mobile */
+@media (max-width: 600px) {
+    .editions-grid {
+        grid-template-columns: 1fr;
+        gap: 35px;
+    }
+    
+    .edition-card img {
+        height: 240px;
+    }
+}
+
 
         header
         {
@@ -370,10 +467,16 @@
         <!-- ====================== PAGE GALERIE ====================== -->
         <div id="gallery" class="page active">
             <h1>Fragments de nature intime</h1>
-            <p class="subtitle">Capturés en lumière naturelle • Sans artifices</p>
+            <p class="subtitle">Capturé en lumière naturelle • Sans artifice</p>
             
             <div class="gallery" id="gallery-container">
-                
+                <!-- Ajoute tes photos ici -->
+                <!-- <div class="photo" data-src="https://via.placeholder.com/1200x1500/111/ddd?text=Fleur+bleue">
+                    <img src="https://via.placeholder.com/800x1000/111/ddd?text=Fleur+bleue" alt="Fleur bleue">
+                </div>
+                <div class="photo" data-src="https://via.placeholder.com/1200x1500/111/ddd?text=Papillon">
+                    <img src="https://via.placeholder.com/800x1000/111/ddd?text=Papillon" alt="Papillon">
+                </div> -->
                 <div class="photo" data-src="./assets/papillon.jpg">
                     <img src="./assets/papillon.jpg" alt="Papillon">
                 </div>
@@ -389,43 +492,140 @@
                 <div class="photo" data-src="./assets/hortensia.jpg">
                     <img src="./assets/hortensia.jpg" alt="hortensia">
                 </div>
-            
+                <!-- Tu peux en ajouter beaucoup plus -->
             </div>
         </div>
 
         <!-- ====================== PAGE ÉDITIONS LIMITÉES ====================== -->
-        <div id="editions" class="page">
-            <h1>Éditions limitées</h1>
-            <p class="subtitle">Chaque tirage est numéroté, signé et accompagné d’un certificat d’authenticité</p>
+    <div id="editions" class="gallery-page page">
 
-            <div class="edition-card">
-                <h2>Rose magenta</h2>
-                <p>Tirage pigmentaire sur papier Hahnemühle Photo Rag 308g • Format 30×45 cm</p>
-                <div class="price">150 €</div>
-                <p>Édition limitée à 30 exemplaires</p>
-            </div>
+    <h1>Éditions limitées</h1>
+    
+    <p class="subtitle">Fragments de nature intime</p>
 
-            <div class="edition-card">
-                <h2>Papillon en clair-obscur</h2>
-                <p>Tirage pigmentaire sur papier Canson Baryta • Format 40×60 cm</p>
-                <div class="price">240 €</div>
-                <p>Édition limitée à 20 exemplaires</p>
-            </div>
+    <p style="max-width: 680px; margin: 40px auto 60px auto; text-align: center; color: #ccc; line-height: 1.8;">
+        Ces images sont nées d’un dialogue intime avec la nature. 
+        Capturées en lumière naturelle, elles révèlent la fragilité et la beauté discrète 
+        du vivant minuscule. Chaque tirage est une édition limitée, signée et numérotée.
+    </p>
 
-            <div class="edition-card">
-                <h2>escargot sur fleur</h2>
-                <p>Tirage pigmentaire sur papier Canson Baryta • Format 40×60 cm</p>
-                <div class="price">250 €</div>
-                <p>Édition limitée à 20 exemplaires</p>
-            </div>
-
+    <div class="editions-grid" id="editions-grid">
+        <!-- Les fiches seront générées ici par JS ou en dur -->
+        <!-- 1. Papillon sur fleur -->
+<div class="edition-card">
+    <img src="./assets/papillon.jpg" alt="Papillon sur fleur">
+    <div class="edition-info">
+        <h3>Papillon fugitif</h3>
+        <p>40 × 60 cm • Tirage pigmentaire sur Hahnemühle Photo Rag 308 g</p>
+        
+        <div class="price-container">
+            <div class="price">Tirage seul — 225 €</div>
+            <div class="price">Avec cadre caisse américaine noire mate — 395 €</div>
         </div>
+        
+        <p style="font-size: 0.9rem; color: #777; margin-top: 10px;">
+            Édition limitée à 20 exemplaires • Certificat d’authenticité inclus
+        </p>
+        
+        <a href="#" class="btn nav-link" data-page="contact">Je suis intérressé</a>
+    </div>
+</div>
+
+<!-- 2. Escargot sur fleur de carotte sauvage -->
+<div class="edition-card">
+    <img src="./assets/escargot.jpg" alt="Escargot sur fleur de carotte sauvage">
+    <div class="edition-info">
+        <h3>Refuge d’étoiles sèches</h3>
+        <p>40 × 60 cm • Tirage pigmentaire sur Hahnemühle Photo Rag 308 g</p>
+        
+        <div class="price-container">
+            <div class="price">Tirage seul — 225 €</div>
+            <div class="price">Avec cadre caisse américaine noire mate — 395 €</div>
+        </div>
+        
+        <p style="font-size: 0.9rem; color: #777; margin-top: 10px;">
+            Édition limitée à 20 exemplaires • Certificat d’authenticité inclus
+        </p>
+        
+        <a href="#" class="btn nav-link" data-page="contact">Je suis intérressé</a>
+    </div>
+</div>
+
+<!-- 3. Rose magenta -->
+<div class="edition-card">
+    <img src="./assets/rose.jpg" alt="Rose magenta">
+    <div class="edition-info">
+        <h3>Éclosion silencieuse</h3>
+        <p>30 × 45 cm • Tirage pigmentaire sur Hahnemühle Photo Rag 308 g</p>
+        
+        <div class="price-container">
+            <div class="price">Tirage seul — 135 €</div>
+            <div class="price">Avec cadre caisse américaine noire mate — 285 €</div>
+        </div>
+        
+        <p style="font-size: 0.9rem; color: #777; margin-top: 10px;">
+            Édition limitée à 30 exemplaires • Certificat d’authenticité inclus
+        </p>
+        
+        <a href="#" class="btn nav-link" data-page="contact">Je suis intérressé</a>
+    </div>
+</div>
+
+<!-- 4. Petites fleurs (hortensia) -->
+<div class="edition-card">
+    <img src="./assets/fleur.jpg" alt="Petites fleurs">
+    <div class="edition-info">
+        <h3>Dégradé crépusculaire</h3>
+        <p>30 × 45 cm • Tirage pigmentaire sur Hahnemühle Photo Rag 308 g</p>
+        
+        <div class="price-container">
+            <div class="price">Tirage seul — 135 €</div>
+            <div class="price">Avec cadre caisse américaine noire mate — 285 €</div>
+        </div>
+        
+        <p style="font-size: 0.9rem; color: #777; margin-top: 10px;">
+            Édition limitée à 30 exemplaires • Certificat d’authenticité inclus
+        </p>
+        
+        <a href="#" class="btn nav-link" data-page="contact">Je suis intérressé</a>
+    </div>
+</div>
+
+<!-- 5. Fleur blanche -->
+<div class="edition-card">
+    <img src="./assets/hortensia.jpg" alt="Fleur blanche">
+    <div class="edition-info">
+        <h3>Pureté fragile</h3>
+        <p>30 × 45 cm • Tirage pigmentaire sur Hahnemühle Photo Rag 308 g</p>
+        
+        <div class="price-container">
+            <div class="price">Tirage seul — 135 €</div>
+            <div class="price">Avec cadre caisse américaine noire mate — 285 €</div>
+        </div>
+        
+        <p style="font-size: 0.9rem; color: #777; margin-top: 10px;">
+            Édition limitée à 30 exemplaires • Certificat d’authenticité inclus
+        </p>
+        
+        <a href="#" class="btn nav-link" data-page="contact">Je suis intérressé</a>
+    </div>
+</div>
+    </div>
+
+    </div>
+    
+
+
+        
 
         <!-- ====================== PAGE CONTACT ====================== -->
         <div id="contact" class="page">
             <h1>Contact</h1>
             <p class="subtitle">Pour toute demande de tirage, renseignement ou collaboration</p>
-
+            <p style="text-align: center; color: #bbb; margin-bottom: 40px; font-size: 1.05rem;">
+    Dites-moi quelle photographie vous intéresse.<br>
+    Je vous répondrai avec plaisir et dans les meilleurs délais.
+</p>
             <form id="contact-form">
                 <input type="text" placeholder="Votre nom" required>
                 <input type="email" placeholder="Votre email" required>
