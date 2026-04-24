@@ -1,0 +1,69 @@
+.checkbox-list label {
+    display: block;
+    margin-bottom: 14px;
+    font-size: 1.05rem;
+    color: #444;
+    cursor: pointer;
+}
+
+.checkbox-list input[type="checkbox"] {
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 15px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.textArea
+{
+    display: grid;
+    grid-template-columns: 1fr;
+    margin-bottom: 15px;
+}
+
+.contact-form,
+.contact-form input,
+.textArea textarea
+{
+    padding: 14px 16px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+.btn-big {
+    display: block;
+    width: 100%;
+    max-width: 320px;
+    margin: 25px auto 25px;
+    padding: 16px 40px;
+    background: #333;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    letter-spacing: 1.1px;
+}
+
+.btn-big:hover {
+    background: #555;
+}
+
+@media (max-width: 600px) {
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+footer {
+  text-align: center;
+  padding: 3rem 1rem;
+  /* color: var(--accent); */
+  margin-top: 4rem;
+}

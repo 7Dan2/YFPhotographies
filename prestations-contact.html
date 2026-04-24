@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- CSS -->
+     <link rel="stylesheet" href="./prestations-contact.css" />
+    
+    <title>Prestations | Contact</title>
+</head>
+<body>
+ <div class="contact-section">
+    <h2>Me contacter pour une séance</h2>
+    <p style="text-align: center; color: #555; margin-bottom: 40px;">
+        Dites-moi ce qui vous intéresse, je vous répondrai rapidement et avec plaisir.
+    </p>
+
+    <form id="prestations-form" class="contact-form">
+        
+        <h3>Je suis intéressé par :</h3>
+        
+        <div class="checkbox-list">
+            <label class="checkbox-item">
+                <input type="checkbox" name="offre" value="reseaux">
+                Réseaux Sociaux (95 €) – Shooting pendant les épreuves ou entraînements
+            </label>
+            
+            <label class="checkbox-item">
+                <input type="checkbox" name="offre" value="essentiel">
+                Essentiel Privé (195 €) – Séance dédiée
+            </label>
+            
+            <label class="checkbox-item">
+                <input type="checkbox" name="offre" value="signature">
+                Signature Privé (290 €) – Séance dédiée approfondie
+            </label>
+            
+            <label class="checkbox-item">
+                <input type="checkbox" name="offre" value="unite">
+                Photo à l’unité (35 €) – Idéal pour les petits budgets
+            </label>
+            
+            <label class="checkbox-item">
+                <input type="checkbox" name="offre" value="surmesure">
+                Offre sur mesure – Je souhaite composer ma prestation
+            </label>
+        </div>
+
+        <div class="textArea">
+            <textarea name="message" rows="5" placeholder="Précisions (date souhaitée, lieu, nombre de cavaliers/chevaux, remarques particulières...)"></textarea>
+            
+        </div>
+
+        <div class="form-row">
+            <input type="text" name="nom" placeholder="Votre nom *" required>
+            <input type="email" name="email" placeholder="Votre email *" required>
+            <input type="tel" name="telephone" placeholder="Votre téléphone (facultatif)">
+        </div>
+
+        <button type="submit" class="btn-big">Envoyer ma demande</button>
+    </form>
+</div>
+</div>
+</div>
+</div>
+<footer>
+        © 2026 YF Photographies — Tous droits réservés<br>
+        Photographe de la vie du dehors
+    </footer>
+
+    <script src="./prestations-contact.js"></script>
+</body>
+</html>
+
